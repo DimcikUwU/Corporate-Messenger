@@ -1,0 +1,19 @@
+USE cvPV;
+
+CREATE TABLE Users (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Password VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Messages (
+    ID INT PRIMARY KEY IDENTITY(1,1),
+    SenderID INT NOT NULL,
+    RecipientID INT NOT NULL,
+    MessageSubject VARCHAR(100) NOT NULL,
+    MessageText VARCHAR(MAX) NOT NULL,
+    SentAt DATETIME NOT NULL,
+    FOREIGN KEY (SenderID) REFERENCES Users(ID),
+    FOREIGN KEY (RecipientID) REFERENCES Users(ID)
+);
+
